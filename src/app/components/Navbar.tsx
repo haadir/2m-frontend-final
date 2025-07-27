@@ -20,7 +20,7 @@ export default function Navbar() {
         
         {/* Center - AK image */}
         <div className="flex items-center justify-center flex-1">
-          <Image src="/images/AK.svg" alt="AK" width={70} height={70} />
+          <Image src="/images/AK.svg" alt="AK" width={80} height={80} />
         </div>
         
         {/* Right side - Price and icons */}
@@ -39,4 +39,4 @@ export default function Navbar() {
       </div>
     </div>
   </section>
-} 
+}

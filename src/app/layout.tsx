@@ -62,8 +62,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${gtAmericaStandard.variable} ${gtAmericaMono.variable}`}> 
-      <body className={gtAmericaStandard.className}>{children}</body>
+    <html lang="en" className={`${gtAmericaStandard.variable} ${gtAmericaMono.variable}`}>
+       <body className={`${gtAmericaStandard.className} bg-[#141414]`}>{children}</body>
     </html>
   );
 }
