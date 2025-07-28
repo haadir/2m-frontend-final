@@ -2,22 +2,39 @@ import Image from "next/image";
 import Link from "next/link";
 import Button from "../Button";
 
-const navLinks = [
-    { label: "Market", href: "#" },
-    { label: "Agent", href: "#" },
-]
+interface NavbarProps {
+  currentPage?: 'market' | 'agent';
+}
 
-export default function Navbar() {
+export default function Navbar({ currentPage = 'market' }: NavbarProps) {
   return <section className="border-b border-[#464646] relative">
-    <div className="w-full px-6">
+    <div className="w-full px-6 py-1">
       <div className="flex items-center justify-between">
         {/* Left side - Logo and navigation */}
         <div className="flex items-center gap-8">
-          <div className="relative h-16 w-16 mt-1">
-            <Image src="/images/2M-logo.svg" alt="2M Logo" fill className="object-contain"/>
+          <div className="relative h-16 w-16">
+            <Image src="/images/2M-logo.svg" alt="2M Logo" fill className="object-contain mt-1"/>
           </div>
-          <Link href="/market" className="text-xl text-white font-bold">Market</Link>
-          <Link href="/agent" className="text-xl text-gray-400 hover:text-white transition-colors">Agent</Link>
+                             <Link
+                     href="/market"
+                     className={`text-xl transition-colors ${
+                       currentPage === 'market'
+                         ? 'text-white font-bold'
+                         : 'text-gray-400 hover:text-white font-normal'
+                     }`}
+                   >
+                     Market
+                   </Link>
+                   <Link
+                     href="/agent"
+                     className={`text-xl transition-colors ${
+                       currentPage === 'agent'
+                         ? 'text-white font-bold'
+                         : 'text-gray-400 hover:text-white font-normal'
+                     }`}
+                   >
+                     Agent
+                   </Link>
         </div>
                 
         {/* Right side - Price and icons */}
@@ -38,7 +55,7 @@ export default function Navbar() {
       </div>
       
       {/* Center - AK image (absolutely positioned to center of navbar) */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none mt-2">
         <Image src="/images/AK.svg" alt="AK" width={80} height={80} />
       </div>
     </div>
