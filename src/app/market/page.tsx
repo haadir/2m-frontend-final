@@ -1,7 +1,7 @@
 import Navbar from "../components/market/Navbar";
 import CategoryBar from "../components/market/CategoryBar";
 import Sidebar from "../components/market/Sidebar";
-import ItemGrid from "../components/ItemGrid";
+import ItemGrid from "../components/market/ItemGrid";
 
 export default function MarketPage() {
   return (

@@ -1,4 +1,6 @@
 import Image from "next/image";
+import Link from "next/link";
+import Button from "../Button";
 
 const navLinks = [
     { label: "Market", href: "#" },
@@ -14,8 +16,8 @@ export default function Navbar() {
           <div className="relative h-16 w-16 mt-1">
             <Image src="/images/2M-logo.svg" alt="2M Logo" fill className="object-contain"/>
           </div>
-          <div className="text-xl text-white font-bold">Market</div>
-          <div className="text-xl text-gray-400">Agent</div>
+          <Link href="/market" className="text-xl text-white font-bold">Market</Link>
+          <Link href="/agent" className="text-xl text-gray-400 hover:text-white transition-colors">Agent</Link>
         </div>
                 
         {/* Right side - Price and icons */}
@@ -28,14 +30,15 @@ export default function Navbar() {
           <div>
             <Image src="/icons/notification-icon.svg" alt="notification" width={35} height={35} />
           </div> */}
-          <div>
+          <Button variant="primary" icon="/icons/steam-logo.svg" iconAlt="Steam">Sign In</Button>
+          {/* <div>
             <Image src="/icons/account-icon.svg" alt="account" width={35} height={35} />
-          </div>
+          </div> */}
         </div>
       </div>
       
       {/* Center - AK image (absolutely positioned to center of navbar) */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none mt-3">
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <Image src="/images/AK.svg" alt="AK" width={80} height={80} />
       </div>
     </div>

@@ -1,4 +1,4 @@
-import ItemCard from './ItemCard';
+import ItemCard from '../ItemCard';
 
 export default function ItemGrid() {
   // Mock data for demonstration
