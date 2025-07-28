@@ -52,8 +52,11 @@ const gtAmericaMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "2M",
+  title: "2Marketplace",
   description: "An AI-powered CS2 marketplace",
+  icons: {
+    icon: '/images/2M-logo.svg',
+  },
 };
 
 export default function RootLayout({
