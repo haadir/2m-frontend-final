@@ -7,11 +7,12 @@ import Button from '../../Button';
 interface SpecialOption {
   id: string;
   label: string;
+  color: string;
 }
 
 const specialOptions: SpecialOption[] = [
-  { id: 'startrak', label: 'StarTrak' },
-  { id: 'souvenir', label: 'Souvenir' },
+  { id: 'startrak', label: 'StarTrak', color: '#8b5cf6' }, // Purple
+  { id: 'souvenir', label: 'Souvenir', color: '#f59e0b' }, // Amber
 ];
 
 interface SpecialFilterProps {
@@ -43,15 +44,11 @@ export default function SpecialFilter({ selectedSpecials, setSelectedSpecials }:
         {specialOptions.map((special) => (
           <Button
             key={special.id}
-            variant={isSelected(special.id) ? "primary" : "secondary"}
+            variant="wear-filter"
+            selected={isSelected(special.id)}
+            customColor={special.color}
             onClick={() => handleSpecialToggle(special.id)}
-            className={`
-              flex-1 px-3 py-2 text-sm font-medium
-              ${isSelected(special.id) 
-                ? 'bg-[#1E1E1E] border-[#464646] text-white' 
-                : 'bg-[#1E1E1E] border-[#464646] text-gray-400 hover:text-white'
-              }
-            `}
+            className="flex-1"
           >
             {special.label}
           </Button>

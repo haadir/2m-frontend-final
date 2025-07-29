@@ -54,24 +54,15 @@ export default function WearFilter({ selectedWears, setSelectedWears }: WearFilt
       {/* Wear Buttons Grid */}
       <div className="grid grid-cols-2 gap-2">
         {wearOptions.map((wear) => (
-          <button
+          <Button
             key={wear.id}
+            variant="wear-filter"
+            selected={isSelected(wear.id)}
+            customColor={wear.color}
             onClick={() => handleWearToggle(wear.id)}
-            className={`
-              px-3 py-2 rounded-md text-md font-regular transition-all duration-200
-              border border-[#464646] bg-[#1E1E1E] hover:bg-[#2A2A2A]
-              ${isSelected(wear.id) 
-                ? 'border-opacity-100' 
-                : 'border-opacity-50 text-gray-400'
-              }
-            `}
-            style={{
-              color: isSelected(wear.id) ? wear.color : undefined,
-              borderColor: isSelected(wear.id) ? wear.color : undefined,
-            }}
           >
             {wear.label}
-          </button>
+          </Button>
         ))}
       </div>
     </div>

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Button from "../Button";
+import ArmyTimeDisplay from "./ArmyTimeDisplay";
 
 interface NavbarProps {
   currentPage?: 'market' | 'agent';
@@ -36,6 +37,11 @@ export default function Navbar({ currentPage = 'market' }: NavbarProps) {
                      Agent
                    </Link>
         </div>
+        
+        {/* Center - Army Time Display with AK */}
+        <div className="absolute left-1/2 transform -translate-x-1/2">
+          <ArmyTimeDisplay />
+        </div>
                 
         {/* Right side - Price and icons */}
         <div className="flex items-center gap-8">
@@ -52,11 +58,6 @@ export default function Navbar({ currentPage = 'market' }: NavbarProps) {
             <Image src="/icons/account-icon.svg" alt="account" width={35} height={35} />
           </div> */}
         </div>
-      </div>
-      
-      {/* Center - AK image (absolutely positioned to center of navbar) */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none mt-2">
-        <Image src="/images/AK.svg" alt="AK" width={80} height={80} />
       </div>
     </div>
   </section>
