@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import Providers from "./providers";
 
 const gtAmericaStandard = localFont({
   src: [
@@ -66,7 +67,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${gtAmericaStandard.variable} ${gtAmericaMono.variable}`}>
-       <body className={`${gtAmericaStandard.className} bg-[#141414]`}>{children}</body>
+       <body className={`${gtAmericaStandard.className} bg-[#141414]`}>
+      <Providers>{children}</Providers>
+</body>
     </html>
   );
 }

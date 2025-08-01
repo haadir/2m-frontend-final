@@ -5,7 +5,12 @@ export default function ItemGrid() {
   const items = Array.from({ length: 12 }, (_, i) => ({ id: i + 1 }));
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+    <div
+      className="grid gap-4"
+      style={{
+        gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))',
+      }}
+    >
       {items.map((item) => (
         <ItemCard key={item.id} />
       ))}

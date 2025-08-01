@@ -1,5 +1,5 @@
 import { AnimatedAIChat } from "../sections/agent/animated-ai-chat"
-import Navbar from "../components/market-comp/Navbar"
+import Navbar from "../components/Navbar"
 
 export default function AgentPage() {
   return (

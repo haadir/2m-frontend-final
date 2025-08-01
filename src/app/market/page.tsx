@@ -1,4 +1,4 @@
-import Navbar from "../components/market-comp/Navbar";
+import Navbar from "../components/Navbar";
 import CategoryBar from "../components/market-comp/CategoryBar";
 import Sidebar from "../components/market-comp/Sidebar";
 import ItemGrid from "../components/market-comp/ItemGrid";
