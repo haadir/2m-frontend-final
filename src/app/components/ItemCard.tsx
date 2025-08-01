@@ -1,4 +1,6 @@
-import React, { useMemo } from 'react';
+"use client";
+
+import React, { useRef, useEffect, useState, useCallback } from 'react';
 import Image from 'next/image';
 import { Star, Eye, Search, Camera, Info, Circle } from 'lucide-react';
 
@@ -71,6 +73,28 @@ export default function ItemCard() {
     return (float * 100).toFixed(1);
   };
 
+  // Interactive background position
+  const [bgPos, setBgPos] = useState<string>('0% 0%');
+
+  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const relX = (e.clientX - rect.left) / rect.width; // 0..1
+    const relY = (e.clientY - rect.top) / rect.height;
+    const offsetX = (relX - 0.5) * 20; // range -10..10
+    const offsetY = (relY - 0.5) * 20;
+    setBgPos(`${50 + offsetX}% ${50 + offsetY}%`);
+  }, []);
+
+  const handleMouseLeave = useCallback(() => {
+    setBgPos('0% 0%');
+  }, []);
+
+  // Stable animation delay to avoid hydration mismatch
+  const delayRef = useRef<number>(0);
+  useEffect(() => {
+    delayRef.current = Math.random() * 8;
+  }, []);
+
   return (
     <div className="bg-[#181818] border border-[#464646] rounded-md w-full max-w-[308px] flex flex-col overflow-hidden">
       {/* Top Section - Item Details */}
@@ -86,14 +110,16 @@ export default function ItemCard() {
       
       {/* Middle Section - Image with Animated Red Gradient */}
       {(() => {
-        const delay = useMemo(() => Math.random() * 8, []);
         return (
           <div
             className="relative flex-1 animate-subtle-gradient"
             style={{
               background: 'linear-gradient(90deg, rgba(235,75,75,0.7) 0%, #1A1B20 100%)',
-              animationDelay: `${delay}s`,
+              animationDelay: `${delayRef.current}s`,
+              backgroundPosition: bgPos,
             }}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
           >
             <div className="relative w-full h-full flex items-center justify-center">
               <Image 

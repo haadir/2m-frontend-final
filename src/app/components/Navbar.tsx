@@ -23,28 +23,28 @@ export default function Navbar({ currentPage = 'market' }: NavbarProps) {
           <div className="relative h-16 w-16">
             <Image src="/images/2M-logo.svg" alt="2M Logo" fill className="object-contain mt-1"/>
           </div>
-            <div className="flex flex-col items-center">
+            <div className="relative group">
               <Link
                 href="/market"
-                className={`text-xl transition-colors ${
+                className={`text-xl transition-colors pb-1 ${
                   currentPage==='market' ? 'text-white' : 'text-gray-400 hover:text-white'
                 }`}
               >
                 Market
               </Link>
               {currentPage==='market' && (
-                <div className="h-0.5 w-full bg-white mt-1 rounded-full" />
+                <span className="absolute left-0 right-0 bottom-0 h-px bg-white" />
               )}
             </div>
-            <div className="relative group flex flex-col items-center">
+            <div className="relative group">
               <Link
                 href="/agent"
-                className={`text-xl transition-colors hover-gradient ${currentPage==='agent'?'':'opacity-70'}`}
+                className={`text-xl transition-colors hover-gradient pb-1 ${currentPage==='agent'?'':'opacity-70'}`}
               >
                 Agent
               </Link>
               {currentPage==='agent' && (
-                <div className="h-0.5 w-full gradient-underline mt-1 rounded-full" />
+                <span className="absolute left-0 right-0 bottom-0 h-px gradient-underline" />
               )}
               <span className="sparkle">✨</span>
             </div>
@@ -66,10 +66,13 @@ export default function Navbar({ currentPage = 'market' }: NavbarProps) {
             <Image src="/icons/notification-icon.svg" alt="notification" width={35} height={35} />
           </div> */}
           {isAuthenticated ? (
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-8">
               {/* Funds, cart, bell hidden on mobile */}
-              <div className="hidden sm:flex items-center gap-4">
-                <div className="font-medium">$0.00</div>
+              <div className="hidden sm:flex items-center gap-8">
+                <div className="px-3 py-2 rounded-md border border-[#464646] bg-[#1E1E1E] flex items-center gap-1" style={{fontFamily:'var(--font-gt-america-mono)'}}>
+                  <span className="text-white text-sm transform scale-75">$</span>
+                  <span className="text-white text-sm">0.00</span>
+                </div>
                 <Image src="/icons/cart-icon.svg" alt="cart" width={35} height={35} />
                 <Image src="/icons/notification-icon.svg" alt="notification" width={35} height={35} />
               </div>
