@@ -4,8 +4,7 @@ import React, { useRef, useEffect, useState, useCallback } from 'react';
 import Image from 'next/image';
 import { Star, Eye, Search, Camera, Info, Circle } from 'lucide-react';
 
-// TODO: Move this interface to a separate types file when you add API calls
-interface CSGOItem {
+export interface CSGOItem {
   id: string;
   name: string;
   condition: string;
@@ -26,32 +25,11 @@ interface CSGOItem {
   // - tradeUp?: boolean;
 }
 
-// TODO: Replace with real API data
-const dummyItem: CSGOItem = {
-  id: '1',
-  name: 'AK-47 | Case Hardened',
-  condition: 'Factory New',
-  price: 11000.00,
-  rank: 1,
-  float: 0.063,
-  floatRank: 26,
-  views: 102,
-  status: 'offline',
-  imageUrl: '/images/AK-CaseHardened.svg', // TODO: Replace with actual image path
-  pattern: 'Case Hardened',
-  rarity: 'Covert'
-};
+interface ItemCardProps {
+  item: CSGOItem;
+}
 
-export default function ItemCard() {
-  // TODO: Replace with props when you add API calls
-  // interface ItemCardProps {
-  //   item: CSGOItem;
-  //   onBuy?: (itemId: string) => void;
-  //   onInspect?: (itemId: string) => void;
-  // }
-  
-  const item = dummyItem; // TODO: Replace with props.item
-
+export default function ItemCard({ item }: ItemCardProps) {
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat('en-US', {
       style: 'currency',
@@ -60,7 +38,8 @@ export default function ItemCard() {
     }).format(price);
   };
 
-  const getFloatColor = (float: number) => {
+  const getFloatColor = (float?: number) => {
+    if (float === undefined) return '#71717a';
     if (float < 0.07) return '#4ade80'; // Green for very low wear
     if (float < 0.15) return '#22c55e'; // Light green
     if (float < 0.38) return '#eab308'; // Yellow
@@ -68,9 +47,20 @@ export default function ItemCard() {
     return '#ef4444'; // Red for high wear
   };
 
-  const getFloatPercentage = (float: number) => {
+  const getFloatPercentage = (float?: number) => {
     // Convert float to percentage (0.063 = 6.3%)
-    return (float * 100).toFixed(1);
+    return float !== undefined ? (float * 100).toFixed(1) : '0';
+  };
+
+  const getRaritySolidColor = (rarity: string): string => {
+    const r = rarity.toLowerCase();
+    if (["covert", "extraordinary", "master"].some(g => r.includes(g))) return "#ef4444"; // red
+    if (r.includes("classified")) return "#ec4899"; // pink
+    if (r.includes("restricted")) return "#a21caf"; // purple
+    if (r.includes("mil-spec")) return "#2563eb"; // blue
+    if (r.includes("industrial")) return "#38bdf8"; // sky
+    if (r.includes("base grade")) return "#d4d4d8"; // grey
+    return "#71717a";
   };
 
   // Interactive background position
@@ -114,7 +104,7 @@ export default function ItemCard() {
           <div
             className="relative flex-1 animate-subtle-gradient"
             style={{
-              background: 'linear-gradient(90deg, rgba(235,75,75,0.7) 0%, #1A1B20 100%)',
+              background: `linear-gradient(90deg, ${getRaritySolidColor(item.rarity || '')}b3 0%, #1A1B20 100%)`,
               animationDelay: `${delayRef.current}s`,
               backgroundPosition: bgPos,
             }}
@@ -123,7 +113,7 @@ export default function ItemCard() {
           >
             <div className="relative w-full h-full flex items-center justify-center">
               <Image 
-                src={item.imageUrl}
+                src={item.imageUrl || '/placeholder-item.png'}
                 alt={item.name}
                 width={260}
                 height={260}

@@ -1,9 +1,17 @@
 'use client';
 
-export default function InventoryGrid() {
+import ItemCard, { CSGOItem } from '../ItemCard';
+
+interface Props {
+  items: CSGOItem[];
+}
+
+export default function InventoryGrid({ items }: Props) {
   return (
     <div className="grid gap-4" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))' }}>
-      {/* TODO: Render item cards from Steam inventory */}
+      {items.map(item => (
+        <ItemCard key={item.id} item={item} />
+      ))}
     </div>
   );
 } 

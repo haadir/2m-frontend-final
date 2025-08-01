@@ -9,7 +9,7 @@ import ArmyTimeDisplay from "./market-comp/ArmyTimeDisplay";
 import { useAuth } from "../../lib/authContext";
 
 interface NavbarProps {
-  currentPage?: 'market' | 'agent';
+  currentPage?: 'market' | 'agent' | 'inventory';
 }
 
 export default function Navbar({ currentPage = 'market' }: NavbarProps) {

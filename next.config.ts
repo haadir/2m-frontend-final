@@ -6,6 +6,7 @@ const nextConfig: NextConfig = {
       'avatars.steamstatic.com', // Steam avatar CDN
       'steamcdn-a.akamaihd.net', // Alternate Steam CDN
       'avatars.cloudflare.steamstatic.com', // Cloudflare variant
+      'community.cloudflare.steamstatic.com', // Steam inventory images
     ],
   },
 };
