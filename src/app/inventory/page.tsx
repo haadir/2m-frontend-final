@@ -7,7 +7,7 @@ import InventoryGrid from "../components/inventory-comp/InventoryGrid";
 import useSteamInventory from "@/lib/useSteamInventory";
 
 export default function InventoryPage() {
-  const { items } = useSteamInventory();
+  const { items, loading } = useSteamInventory();
 
   return (
     <div className="h-screen flex flex-col">
@@ -18,7 +18,7 @@ export default function InventoryPage() {
           <div className="flex flex-col flex-1 gap-4 overflow-hidden">
             <TopBar />
             <div className="flex-1 overflow-y-auto pr-2">
-              <InventoryGrid items={items} />
+              <InventoryGrid items={items} loading={loading} cardWidth={210} />
             </div>
           </div>
           {/* Right column: Item queue aligns with TopBar */}

@@ -18,13 +18,13 @@ export default function ItemGrid() {
 
   return (
     <div
-      className="grid gap-4"
+      className="grid gap-4 overflow-visible"
       style={{
         gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))',
       }}
     >
-      {dummyItems.map((item) => (
-        <ItemCard key={item.id} item={item} />
+      {dummyItems.map((item,i) => (
+        <ItemCard key={item.id} item={item} className="card-enter" style={{animationDelay:`${i*60}ms`}} />
       ))}
     </div>
   );

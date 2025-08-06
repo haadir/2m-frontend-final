@@ -11,7 +11,7 @@ import StickersFilter from './sidebar-comp/StickersFilter';
 import CharmsFilter from './sidebar-comp/CharmsFilter';
 import RarityFilter from './sidebar-comp/RarityFilter';
 import CollectionFilter from './sidebar-comp/CollectionFilter';
-import ListingFilter from './sidebar-comp/ListingFilter';
+// import ListingFilter from './sidebar-comp/ListingFilter';
 
 export default function Sidebar() {
   const [priceRange, setPriceRange] = React.useState({ min: 0, max: 10000 });
@@ -25,8 +25,11 @@ export default function Sidebar() {
   };
 
   return (
-    <aside className="w-[400px] h-[790px] bg-[#181818] border border-[#464646] rounded-md">
-      <div className="h-full overflow-y-auto space-y-6 px-4 py-4">
+    <aside
+      className="w-[400px] bg-[#181818] border border-[#464646] rounded-md"
+      style={{ height: 'calc(100vh - 220px)', minHeight: '790px' }}
+    >
+      <div className="h-full overflow-y-auto space-y-6 px-4 pt-4 pb-2">
         {/* Search Bar */}
         <div className="relative">
           <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
@@ -94,11 +97,7 @@ export default function Sidebar() {
         {/* Collection Filter */}
         <CollectionFilter />
         
-        {/* Divider Line */}
-        <div className="border-b border-[#464646] my-4 -mx-4"></div>
-        
-        {/* Listing Filter */}
-        <ListingFilter />
+        {/* End of filters */}
         
         {/* Divider Line */}
         <div className="border-b border-[#464646] my-4 -mx-4"></div>

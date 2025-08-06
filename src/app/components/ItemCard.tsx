@@ -27,9 +27,11 @@ export interface CSGOItem {
 
 interface ItemCardProps {
   item: CSGOItem;
+  style?: React.CSSProperties;
+  className?: string;
 }
 
-export default function ItemCard({ item }: ItemCardProps) {
+export default function ItemCard({ item, style, className="" }: ItemCardProps) {
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat('en-US', {
       style: 'currency',
@@ -63,6 +65,17 @@ export default function ItemCard({ item }: ItemCardProps) {
     return "#71717a";
   };
 
+  const getRarityBrightColor = (rarity: string): string => {
+    const r = rarity.toLowerCase();
+    if (["covert", "extraordinary", "master"].some(g => r.includes(g))) return "#ff5555"; // bright red
+    if (r.includes("classified")) return "#ff69b4"; // hot pink
+    if (r.includes("restricted")) return "#c855ff"; // bright purple
+    if (r.includes("mil-spec")) return "#4a90e2"; // bright blue
+    if (r.includes("industrial")) return "#55ddff"; // bright sky
+    if (r.includes("base grade")) return "#e5e5e5"; // bright grey
+    return "#8a8a8a";
+  };
+
   // Interactive background position
   const [bgPos, setBgPos] = useState<string>('0% 0%');
 
@@ -86,12 +99,12 @@ export default function ItemCard({ item }: ItemCardProps) {
   }, []);
 
   return (
-    <div className="bg-[#181818] border border-[#464646] rounded-md w-full max-w-[308px] flex flex-col overflow-hidden">
+    <div className={`bg-[#181818] border border-[#464646] rounded-md w-full flex flex-col relative transition-transform duration-150 hover:scale-[1.03] hover:z-10 ${className}`} style={style}>
       {/* Top Section - Item Details */}
       <div className="p-3 bg-[#1E1E1E] rounded-t-md">
-        {/* Item Name and Star */}
+        {/* Item Name */}
         <div className="mb-1">
-          <h3 className="text-white font-bold text-sm">★ {item.name}</h3>
+          <h3 className="text-white font-bold text-sm truncate">{item.name.replace(/ \(.*?\)$/, '').replace(/ (Factory New|Minimal Wear|Field-Tested|Well-Worn|Battle-Scarred)$/, '')}</h3>
         </div>
         
         {/* Condition */}
@@ -118,6 +131,7 @@ export default function ItemCard({ item }: ItemCardProps) {
                 width={260}
                 height={260}
                 className="object-contain"
+                priority
               />
               
               {/* Interaction Icons - Bottom Left */}
@@ -136,7 +150,7 @@ export default function ItemCard({ item }: ItemCardProps) {
         );
       })()}
       {/* Bottom Section - Pricing & Status */}
-      <div className="p-3 bg-[#1E1E1E] rounded-b-md border-t border-[#EB4B4B]">
+      <div className="p-3 bg-[#1E1E1E] rounded-b-md border-t" style={{ borderTopColor: getRarityBrightColor(item.rarity || '') }}>
         {/* Price and Rank Row */}
         <div className="flex items-center justify-between mb-2">
           <span className="text-white font-bold text-lg">

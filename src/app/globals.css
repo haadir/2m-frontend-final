@@ -34,7 +34,7 @@ html {
 button:hover,
 a[href]:hover,
 [role="button"]:hover {
-  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' stroke='white' fill='none' stroke-width='2'%3E%3Ccircle cx='16' cy='16' r='10'/%3E%3Cline x1='16' y1='0' x2='16' y2='8'/%3E%3Cline x1='16' y1='24' x2='16' y2='32'/%3E%3Cline x1='0' y1='16' x2='8' y2='16'/%3E%3Cline x1='24' y1='16' x2='32' y2='16'/%3E%3C/svg%3E") 16 16, crosshair;
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' stroke='white' fill='none' stroke-width='1.5'%3E%3Ccircle cx='10' cy='10' r='6'/%3E%3Cline x1='10' y1='0' x2='10' y2='5'/%3E%3Cline x1='10' y1='15' x2='10' y2='20'/%3E%3Cline x1='0' y1='10' x2='5' y2='10'/%3E%3Cline x1='15' y1='10' x2='20' y2='10'/%3E%3C/svg%3E") 10 10, crosshair;
 }
 
 /* Subtle moving gradient animation for item cards */
@@ -86,4 +86,27 @@ a[href]:hover,
 
 .gradient-underline{
   background: linear-gradient(90deg,#8B5CF6,#3B82F6,#8B5CF6);
+}
+
+/* Card entry animation */
+@keyframes cardEnter {
+  0% {opacity:0; transform:translateY(8px);}
+  100% {opacity:1; transform:translateY(0);}
+}
+.card-enter{animation:cardEnter 0.3s cubic-bezier(0.22,0.61,0.36,1) forwards;}
+
+/* Skeleton shimmer */
+@keyframes shimmer {
+  0% {background-position:-200% 0;}
+  100% {background-position:200% 0;}
+}
+.skeleton{
+  background:linear-gradient(90deg,#1e1e1e 25%,#2a2a2a 50%,#1e1e1e 75%);
+  background-size:400% 100%;
+  animation:shimmer 1.2s linear infinite;
+}
+
+@keyframes fadeInUp {
+  0% {opacity:0; transform:translateY(8px);} 
+  100% {opacity:1; transform:translateY(0);} 
 }

@@ -6,14 +6,14 @@ export default function TopBar() {
   return (
     <div className="w-full bg-[#181818] border border-[#464646] rounded-md px-4 py-3 flex items-center justify-between">
       {/* Left - stats */}
-      <div className="flex items-center gap-10 text-sm" style={{ fontFamily: 'var(--font-gt-america-mono)' }}>
+      <div className="flex items-center gap-10 text-base" style={{ fontFamily: 'var(--font-gt-america-standard)', fontWeight:700 }}>
         <div className="flex items-center gap-2">
-          <span className="text-gray-400">Inventory Cost:</span>
-          <span className="text-green-400">~$10,561.34</span>
+          <span>Inventory Cost:</span>
+          <span className="text-green-400" style={{ fontFamily: 'var(--font-gt-america-mono)', fontWeight: 100 }}><span className="inline-block transform scale-75 translate-y-0.5" >$</span>10,561.34</span>
         </div>
         <div className="flex items-center gap-2">
-          <span className="text-gray-400">Inventory Count:</span>
-          <span className="text-white">31 Items</span>
+          <span>Inventory Count:</span>
+          <span className="text-white font-normal">31 Items</span>
         </div>
       </div>
       {/* Right - search */}

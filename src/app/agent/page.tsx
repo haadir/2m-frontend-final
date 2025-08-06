@@ -1,5 +1,6 @@
 import { AnimatedAIChat } from "../sections/agent/animated-ai-chat"
 import Navbar from "../components/Navbar"
+// Profile overview moved to /profile page
 
 export default function AgentPage() {
   return (

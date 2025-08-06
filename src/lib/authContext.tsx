@@ -32,12 +32,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const fetchUser = async () => {
     try {
-      console.log('Fetching user...');
       const response = await fetch('http://localhost:3001/api/user', {
         credentials: 'include',
       });
       const data = await response.json();
-      console.log(data);
       setUser(data.user);
       setIsAuthenticated(data.isAuthenticated);
       setIsLoading(false);
